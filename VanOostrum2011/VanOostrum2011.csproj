@@ -14,6 +14,10 @@
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Hl7.Fhir.R4" Version="3.1.0" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.194">
