@@ -25,9 +25,4 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Classes\Contexts\PatientLengthOfStays\" />
-    <Folder Include="Interfaces\Contexts\PatientLengthOfStays\" />
-  </ItemGroup>
 </Project>
