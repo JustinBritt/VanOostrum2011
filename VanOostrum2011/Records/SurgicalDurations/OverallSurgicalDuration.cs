@@ -13,19 +13,15 @@
         public OverallSurgicalDuration(
             IDurationFactory durationFactory)
         {
-            this.Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)47,
-                Unit = minutes
-            };
+            this.Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 47m);
 
-            this.StandardDeviation = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)44.1,
-                Unit = minutes
-            };
+            this.StandardDeviation = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 44.1m);
         }
 
         public Duration Mean { get; }
