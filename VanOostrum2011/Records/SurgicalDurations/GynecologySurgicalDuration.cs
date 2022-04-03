@@ -3,13 +3,15 @@
     using Hl7.Fhir.Model;
 
     using VanOostrum2011.Interfaces.SurgicalDurations;
+    using VanOostrum2011.InterfacesFactories.Dependencies.Hl7.Fhir.R4.Model;
 
     public sealed record GynecologySurgicalDuration : IGynecologySurgicalDuration
     {
         private const string minutes = "min";
         private const string unitsofmeasure = "http://unitsofmeasure.org";
 
-        public GynecologySurgicalDuration()
+        public GynecologySurgicalDuration(
+            IDurationFactory durationFactory)
         {
             this.Mean = new Duration()
             {
