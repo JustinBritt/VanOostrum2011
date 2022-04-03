@@ -13,19 +13,15 @@
         public EarNoseThroatSurgicalDuration(
             IDurationFactory durationFactory)
         {
-            this.Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)27,
-                Unit = minutes
-            };
+            this.Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 27m);
 
-            this.StandardDeviation = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)29.8,
-                Unit = minutes
-            };
+            this.StandardDeviation = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 29.8m);
         }
 
         public Duration Mean { get; }
