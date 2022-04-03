@@ -13,19 +13,15 @@
         public EyeSurgeryPatientLengthOfStay(
             IDurationFactory durationFactory)
         {
-            this.Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)1.0,
-                Unit = day
-            };
+            this.Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: day,
+                value: 1.0m);
 
-            this.StandardDeviation = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)0.6,
-                Unit = day
-            };
+            this.StandardDeviation = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: day,
+                value: 0.6m);
         }
 
         public Duration Mean { get; }
