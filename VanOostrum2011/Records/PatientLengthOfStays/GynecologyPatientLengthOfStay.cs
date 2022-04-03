@@ -13,19 +13,15 @@
         public GynecologyPatientLengthOfStay(
             IDurationFactory durationFactory)
         {
-            this.Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)2.3,
-                Unit = day
-            };
+            this.Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: day,
+                value: 2.3m);
 
-            this.StandardDeviation = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)2.4,
-                Unit = day
-            };
+            this.StandardDeviation = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: day,
+                value: 2.4m);
         }
 
         public Duration Mean { get; }
