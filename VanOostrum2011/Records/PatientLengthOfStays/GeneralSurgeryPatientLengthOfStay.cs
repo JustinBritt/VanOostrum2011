@@ -13,19 +13,15 @@
         public GeneralSurgeryPatientLengthOfStay(
             IDurationFactory durationFactory)
         {
-            this.Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)2.7,
-                Unit = day
-            };
+            this.Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: day,
+                value: 2.7m);
 
-            this.StandardDeviation = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)4.7,
-                Unit = day
-            };
+            this.StandardDeviation = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: day,
+                value: 4.7m);
         }
 
         public Duration Mean { get; }
