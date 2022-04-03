@@ -13,19 +13,15 @@
         public GynecologySurgicalDuration(
             IDurationFactory durationFactory)
         {
-            this.Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)57,
-                Unit = minutes
-            };
+            this.Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 57m);
 
-            this.StandardDeviation = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)43.8,
-                Unit = minutes
-            };
+            this.StandardDeviation = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 43.8m);
         }
 
         public Duration Mean { get; }
