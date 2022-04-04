@@ -1,11 +1,6 @@
 ﻿namespace VanOostrum2011.InterfacesFactories.SurgicalDurations
 {
-    using VanOostrum2011.Interfaces.SurgicalDurations;
-    using VanOostrum2011.InterfacesFactories.Dependencies.Hl7.Fhir.R4.Model;
-
-    public interface IPlasticSurgerySurgicalDurationFactory
+    public interface IPlasticSurgerySurgicalDurationFactory : ISurgicalDurationFactory
     {
-        ISurgicalDuration Create(
-            IDurationFactory durationFactory);
     }
 }
