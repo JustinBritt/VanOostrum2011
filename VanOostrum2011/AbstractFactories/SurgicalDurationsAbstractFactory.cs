@@ -112,6 +112,39 @@
             return factory;
         }
 
+        public ISurgicalDurationFactory CreateSurgicalDurationFactory(
+            CodeableConcept specialty)
+        {
+            ISurgicalDurationFactory factory = null;
+
+            try
+            {
+                factory = specialty.Coding[0].Code switch
+                {
+                    EarNoseThroatSurgery => this.CreateEarNoseThroatSurgerySurgicalDurationFactory(),
+
+                    GeneralSurgery => this.CreateGeneralSurgerySurgicalDurationFactory(),
+
+                    GynecologicalSurgery => this.CreateGynecologySurgicalDurationFactory(),
+
+                    OphthalmicSurgery or Ophthalmology => this.CreateEyeSurgerySurgicalDurationFactory(),
+
+                    OrthopedicSurgery => this.CreateOrthopedicSurgerySurgicalDurationFactory(),
+
+                    PlasticSurgery => this.CreatePlasticSurgerySurgicalDurationFactory(),
+
+                    Urology => this.CreateUrologySurgicalDurationFactory(),
+
+                    _ => null
+                };
+            }
+            finally
+            {
+            }
+
+            return factory;
+        }
+
         public IUrologySurgicalDurationFactory CreateUrologySurgicalDurationFactory()
         {
             IUrologySurgicalDurationFactory factory = null;
