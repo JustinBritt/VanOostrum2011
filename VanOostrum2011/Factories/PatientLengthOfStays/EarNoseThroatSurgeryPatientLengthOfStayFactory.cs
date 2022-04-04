@@ -5,9 +5,9 @@
     using VanOostrum2011.InterfacesFactories.PatientLengthOfStays;
     using VanOostrum2011.Records.PatientLengthOfStays;
 
-    internal sealed class EarNoseThroatPatientLengthOfStayFactory : IEarNoseThroatPatientLengthOfStayFactory
+    internal sealed class EarNoseThroatSurgeryPatientLengthOfStayFactory : IEarNoseThroatSurgeryPatientLengthOfStayFactory
     {
-        public EarNoseThroatPatientLengthOfStayFactory()
+        public EarNoseThroatSurgeryPatientLengthOfStayFactory()
         {
         }
 
