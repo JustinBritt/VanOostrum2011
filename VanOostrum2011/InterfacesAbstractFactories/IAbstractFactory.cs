@@ -5,5 +5,7 @@
         IContextsAbstractFactory CreateContextsAbstractFactory();
 
         IDependenciesAbstractFactory CreateDependenciesAbstractFactory();
+
+        ISurgicalDurationsAbstractFactory CreateSurgicalDurationsAbstractFactory();
     }
 }

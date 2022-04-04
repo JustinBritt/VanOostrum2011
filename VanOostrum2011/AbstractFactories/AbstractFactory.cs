@@ -42,5 +42,20 @@
 
             return abstractFactory;
         }
+
+        public ISurgicalDurationsAbstractFactory CreateSurgicalDurationsAbstractFactory()
+        {
+            ISurgicalDurationsAbstractFactory abstractFactory = null;
+
+            try
+            {
+                abstractFactory = new SurgicalDurationsAbstractFactory();
+            }
+            finally
+            {
+            }
+
+            return abstractFactory;
+        }
     }
 }
