@@ -1,0 +1,46 @@
+﻿namespace VanOostrum2011.AbstractFactories
+{
+    using VanOostrum2011.InterfacesAbstractFactories;
+
+    public sealed class AbstractFactory : IAbstractFactory
+    {
+        public AbstractFactory()
+        {
+        }
+
+        public static IAbstractFactory Create()
+        {
+            return new AbstractFactory();
+        }
+
+        public IContextsAbstractFactory CreateContextsAbstractFactory()
+        {
+            IContextsAbstractFactory abstractFactory = null;
+
+            try
+            {
+                abstractFactory = new ContextsAbstractFactory();
+            }
+            finally
+            {
+            }
+
+            return abstractFactory;
+        }
+
+        public IDependenciesAbstractFactory CreateDependenciesAbstractFactory()
+        {
+            IDependenciesAbstractFactory abstractFactory = null;
+
+            try
+            {
+                abstractFactory = new DependenciesAbstractFactory();
+            }
+            finally
+            {
+            }
+
+            return abstractFactory;
+        }
+    }
+}
