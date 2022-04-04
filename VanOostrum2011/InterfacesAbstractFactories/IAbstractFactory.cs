@@ -6,6 +6,8 @@
 
         IDependenciesAbstractFactory CreateDependenciesAbstractFactory();
 
+        IPatientLengthOfStaysAbstractFactory CreatePatientLengthOfStaysAbstractFactory();
+
         ISurgicalDurationsAbstractFactory CreateSurgicalDurationsAbstractFactory();
     }
 }

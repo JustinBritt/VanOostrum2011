@@ -43,6 +43,21 @@
             return abstractFactory;
         }
 
+        public IPatientLengthOfStaysAbstractFactory CreatePatientLengthOfStaysAbstractFactory()
+        {
+            IPatientLengthOfStaysAbstractFactory abstractFactory = null;
+
+            try
+            {
+                abstractFactory = new PatientLengthOfStaysAbstractFactory();
+            }
+            finally
+            {
+            }
+
+            return abstractFactory;
+        }
+
         public ISurgicalDurationsAbstractFactory CreateSurgicalDurationsAbstractFactory()
         {
             ISurgicalDurationsAbstractFactory abstractFactory = null;
