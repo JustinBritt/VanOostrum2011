@@ -97,6 +97,21 @@
             return factory;
         }
 
+        public IOverallSurgicalDurationFactory CreateOverallSurgicalDurationFactory()
+        {
+            IOverallSurgicalDurationFactory factory = null;
+
+            try
+            {
+                factory = new OverallSurgicalDurationFactory();
+            }
+            finally
+            {
+            }
+
+            return factory;
+        }
+
         public IPlasticSurgerySurgicalDurationFactory CreatePlasticSurgerySurgicalDurationFactory()
         {
             IPlasticSurgerySurgicalDurationFactory factory = null;
