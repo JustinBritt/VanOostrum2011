@@ -39,5 +39,20 @@
 
             return factory;
         }
+
+        public IValueFactory CreateValueFactory()
+        {
+            IValueFactory factory = null;
+
+            try
+            {
+                factory = new ValueFactory();
+            }
+            finally
+            {
+            }
+
+            return factory;
+        }
     }
 }

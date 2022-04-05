@@ -7,5 +7,7 @@
         ICodeableConceptFactory CreateCodeableConceptFactory();
 
         IDurationFactory CreateDurationFactory();
+
+        IValueFactory CreateValueFactory();
     }
 }
