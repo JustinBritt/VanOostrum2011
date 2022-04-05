@@ -24,6 +24,6 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release
     - name: Test
-      run: dotnet vstest --verbosity normal
+      run: dotnet vstest
     - name: Publish package
       run: dotnet nuget push ${{ github.workspace }}/${{ github.event.repository.name }}/bin/Release/*.nupkg
