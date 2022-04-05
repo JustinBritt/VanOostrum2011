@@ -13,7 +13,7 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
     public class SurgicalDurationExport
     {
         [TestMethod]
-        public void EarNoseThroatSurgerySurgicalDurationAverage()
+        public void EarNoseThroatSurgeryAverage()
         {
             // Arrange
             IAbstractFactory abstractFactory = AbstractFactory.Create();
