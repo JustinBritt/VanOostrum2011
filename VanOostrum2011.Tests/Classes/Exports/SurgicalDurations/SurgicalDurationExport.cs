@@ -18,9 +18,11 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             // Arrange
             IAbstractFactory abstractFactory = AbstractFactory.Create();
 
+            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
+
             ISurgicalDurationInputContext surgicalDurationInputContext = abstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationInputContextFactory().Create(
-                specialty: abstractFactory.CreateDependenciesAbstractFactory().CreateCodeableConceptFactory().CreateEarNoseThroatSurgery(),
-                statistic: abstractFactory.CreateDependenciesAbstractFactory().CreateValueFactory().CreateAverage());
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateEarNoseThroatSurgery(),
+                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
 
             ISurgicalDurationExport surgicalDurationExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalDurationExportFactory().Create();
 
