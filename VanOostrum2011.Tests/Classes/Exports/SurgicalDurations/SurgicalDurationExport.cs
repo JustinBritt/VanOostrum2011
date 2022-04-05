@@ -240,6 +240,31 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
         }
 
         [TestMethod]
+        public void OrthopedicSurgeryStdDev()
+        {
+            // Arrange
+            IAbstractFactory abstractFactory = AbstractFactory.Create();
+
+            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
+
+            ISurgicalDurationInputContext surgicalDurationInputContext = abstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationInputContextFactory().Create(
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOrthopedicSurgery(),
+                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
+
+            ISurgicalDurationExport surgicalDurationExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalDurationExportFactory().Create();
+
+            // Act
+            ISurgicalDurationOutputContext surgicalDurationOutputContext = surgicalDurationExport.GetSurgicalDuration(
+                abstractFactory,
+                surgicalDurationInputContext);
+
+            // Assert
+            Assert.AreEqual(
+                expected: 37.5m,
+                actual: surgicalDurationOutputContext.Duration.Value.Value);
+        }
+
+        [TestMethod]
         public void InvalidSurgicalSpecialtyAverage()
         {
             // Arrange
