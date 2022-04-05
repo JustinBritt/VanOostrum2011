@@ -65,7 +65,7 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
         }
 
         [TestMethod]
-        public void InvalidSpecialtyAverage()
+        public void InvalidSurgicalSpecialtyAverage()
         {
             // Arrange
             IAbstractFactory abstractFactory = AbstractFactory.Create();
