@@ -12,7 +12,7 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
     using VanOostrum2011.Interfaces.Exports.SurgicalDurations;
 
     [TestClass]
-    public class SurgicalDurationExport
+    public sealed class SurgicalDurationExport
     {
         [TestMethod]
         public void EarNoseThroatSurgeryAverage()
