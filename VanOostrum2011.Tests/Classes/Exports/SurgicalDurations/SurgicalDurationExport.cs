@@ -1,5 +1,7 @@
 namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
 {
+    using System;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Hl7.Fhir.Model;
@@ -60,6 +62,33 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 29.8m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+        }
+
+        [TestMethod]
+        public void InvalidSpecialtyAverage()
+        {
+            // Arrange
+            IAbstractFactory abstractFactory = AbstractFactory.Create();
+
+            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
+
+            ISurgicalDurationInputContext surgicalDurationInputContext = abstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationInputContextFactory().Create(
+                specialty: new CodeableConcept("SCT", "invalid"),
+                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
+
+            ISurgicalDurationExport surgicalDurationExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalDurationExportFactory().Create();
+
+            // Act
+            Action action = () =>
+            {
+                ISurgicalDurationOutputContext surgicalDurationOutputContext = surgicalDurationExport.GetSurgicalDuration(
+                    abstractFactory,
+                    surgicalDurationInputContext);
+            };
+
+            // Assert
+            Assert.ThrowsException<NullReferenceException>(
+                action);
         }
     }
 }
