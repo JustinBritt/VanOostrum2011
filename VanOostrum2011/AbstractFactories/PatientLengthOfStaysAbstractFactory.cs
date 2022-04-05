@@ -1,5 +1,7 @@
 ﻿namespace VanOostrum2011.AbstractFactories
 {
+    using Hl7.Fhir.Model;
+
     using VanOostrum2011.Factories.PatientLengthOfStays;
     using VanOostrum2011.InterfacesAbstractFactories;
     using VanOostrum2011.InterfacesFactories.PatientLengthOfStays;
@@ -28,6 +30,146 @@
             try
             {
                 factory = new EarNoseThroatSurgeryPatientLengthOfStayFactory();
+            }
+            finally
+            {
+            }
+
+            return factory;
+        }
+
+        public IEyeSurgeryPatientLengthOfStayFactory CreateEyeSurgeryPatientLengthOfStayFactory()
+        {
+            IEyeSurgeryPatientLengthOfStayFactory factory = null;
+
+            try
+            {
+                factory = new EyeSurgeryPatientLengthOfStayFactory();
+            }
+            finally
+            {
+            }
+
+            return factory;
+        }
+
+        public IGeneralSurgeryPatientLengthOfStayFactory CreateGeneralSurgeryPatientLengthOfStayFactory()
+        {
+            IGeneralSurgeryPatientLengthOfStayFactory factory = null;
+
+            try
+            {
+                factory = new GeneralSurgeryPatientLengthOfStayFactory();
+            }
+            finally
+            {
+            }
+
+            return factory;
+        }
+
+        public IGynecologyPatientLengthOfStayFactory CreateGynecologyPatientLengthOfStayFactory()
+        {
+            IGynecologyPatientLengthOfStayFactory factory = null;
+
+            try
+            {
+                factory = new GynecologyPatientLengthOfStayFactory();
+            }
+            finally
+            {
+            }
+
+            return factory;
+        }
+
+        public IOrthopedicSurgeryPatientLengthOfStayFactory CreateOrthopedicSurgeryPatientLengthOfStayFactory()
+        {
+            IOrthopedicSurgeryPatientLengthOfStayFactory factory = null;
+
+            try
+            {
+                factory = new OrthopedicSurgeryPatientLengthOfStayFactory();
+            }
+            finally
+            {
+            }
+
+            return factory;
+        }
+
+        public IOverallPatientLengthOfStayFactory CreateOverallPatientLengthOfStayFactory()
+        {
+            IOverallPatientLengthOfStayFactory factory = null;
+
+            try
+            {
+                factory = new OverallPatientLengthOfStayFactory();
+            }
+            finally
+            {
+            }
+
+            return factory;
+        }
+
+        public IPatientLengthOfStayFactory CreatePatientLengthOfStayFactory(
+            CodeableConcept specialty)
+        {
+            IPatientLengthOfStayFactory factory = null;
+
+            try
+            {
+                factory = specialty.Coding[0].Code switch
+                {
+                    EarNoseThroatSurgery => this.CreateEarNoseThroatSurgeryPatientLengthOfStayFactory(),
+
+                    GeneralSurgery => this.CreateGeneralSurgeryPatientLengthOfStayFactory(),
+
+                    GynecologicalSurgery => this.CreateGynecologyPatientLengthOfStayFactory(),
+
+                    OphthalmicSurgery or Ophthalmology => this.CreateEyeSurgeryPatientLengthOfStayFactory(),
+
+                    OrthopedicSurgery => this.CreateOrthopedicSurgeryPatientLengthOfStayFactory(),
+
+                    Overall => this.CreateOverallPatientLengthOfStayFactory(),
+
+                    PlasticSurgery => this.CreatePlasticSurgeryPatientLengthOfStayFactory(),
+
+                    Urology => this.CreateUrologyPatientLengthOfStayFactory(),
+
+                    _ => null
+                };
+            }
+            finally
+            {
+            }
+
+            return factory;
+        }
+
+        public IPlasticSurgeryPatientLengthOfStayFactory CreatePlasticSurgeryPatientLengthOfStayFactory()
+        {
+            IPlasticSurgeryPatientLengthOfStayFactory factory = null;
+
+            try
+            {
+                factory = new PlasticSurgeryPatientLengthOfStayFactory();
+            }
+            finally
+            {
+            }
+
+            return factory;
+        }
+
+        public IUrologyPatientLengthOfStayFactory CreateUrologyPatientLengthOfStayFactory()
+        {
+            IUrologyPatientLengthOfStayFactory factory = null;
+
+            try
+            {
+                factory = new UrologyPatientLengthOfStayFactory();
             }
             finally
             {
