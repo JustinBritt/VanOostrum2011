@@ -14,6 +14,8 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
     [TestClass]
     public sealed class SurgicalDurationExport
     {
+        private const string BoneAndMarrowTransplantationSurgery = "408476004";
+
         private const string minutes = "min";
 
         private const string skew = "skew";
