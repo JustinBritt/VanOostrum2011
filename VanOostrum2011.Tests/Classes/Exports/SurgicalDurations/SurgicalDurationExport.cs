@@ -492,7 +492,7 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
 
             ISurgicalDurationInputContext surgicalDurationInputContext = abstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationInputContextFactory().Create(
                 specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateEarNoseThroatSurgery(),
-                statistic: new FhirString("invalid"));
+                statistic: (IValue<string>)Activator.CreateInstance(typeof(FhirString), "invalid"));
 
             ISurgicalDurationExport surgicalDurationExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalDurationExportFactory().Create();
 
