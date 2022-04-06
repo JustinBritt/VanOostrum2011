@@ -365,6 +365,31 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
         }
 
         [TestMethod]
+        public void UrologyAverage()
+        {
+            // Arrange
+            IAbstractFactory abstractFactory = AbstractFactory.Create();
+
+            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
+
+            ISurgicalDurationInputContext surgicalDurationInputContext = abstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationInputContextFactory().Create(
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateUrology(),
+                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
+
+            ISurgicalDurationExport surgicalDurationExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalDurationExportFactory().Create();
+
+            // Act
+            ISurgicalDurationOutputContext surgicalDurationOutputContext = surgicalDurationExport.GetSurgicalDuration(
+                abstractFactory,
+                surgicalDurationInputContext);
+
+            // Assert
+            Assert.AreEqual(
+                expected: 71m,
+                actual: surgicalDurationOutputContext.Duration.Value.Value);
+        }
+
+        [TestMethod]
         public void InvalidSurgicalSpecialtyAverage()
         {
             // Arrange
