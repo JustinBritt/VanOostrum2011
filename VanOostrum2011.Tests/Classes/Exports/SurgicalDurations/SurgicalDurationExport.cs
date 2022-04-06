@@ -492,7 +492,7 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
 
             ISurgicalDurationInputContext surgicalDurationInputContext = abstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationInputContextFactory().Create(
                 specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateEarNoseThroatSurgery(),
-                statistic: (IValue<string>)Activator.CreateInstance(typeof(FhirString), "invalid"));
+                statistic: dependenciesAbstractFactory.CreateValueFactory().Create("invalid"));
 
             ISurgicalDurationExport surgicalDurationExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalDurationExportFactory().Create();
 
@@ -515,7 +515,7 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
 
             ISurgicalDurationInputContext surgicalDurationInputContext = abstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationInputContextFactory().Create(
-                specialty: new CodeableConcept(SNOMEDCT, "invalid"),
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().Create("invalid", SNOMEDCT, null),
                 statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
 
             ISurgicalDurationExport surgicalDurationExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalDurationExportFactory().Create();
@@ -542,7 +542,7 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
 
             ISurgicalDurationInputContext surgicalDurationInputContext = abstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationInputContextFactory().Create(
-                specialty: new CodeableConcept(SNOMEDCT, "invalid"),
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().Create("invalid", SNOMEDCT, null),
                 statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
 
             ISurgicalDurationExport surgicalDurationExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalDurationExportFactory().Create();
