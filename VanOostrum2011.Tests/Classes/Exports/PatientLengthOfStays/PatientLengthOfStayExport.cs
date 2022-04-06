@@ -218,5 +218,34 @@
                 expected: day,
                 actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
         }
+
+        [TestMethod]
+        public void GynecologyStdDev()
+        {
+            // Arrange
+            IAbstractFactory abstractFactory = AbstractFactory.Create();
+
+            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
+
+            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateGynecology(),
+                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
+
+            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
+
+            // Act
+            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
+                abstractFactory,
+                patientLengthOfStayInputContext);
+
+            // Assert
+            Assert.AreEqual(
+                expected: 2.4m,
+                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: day,
+                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
+        }
     }
 }
