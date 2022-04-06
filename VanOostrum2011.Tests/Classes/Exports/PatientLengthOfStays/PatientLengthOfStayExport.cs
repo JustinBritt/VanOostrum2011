@@ -421,5 +421,34 @@
                 expected: day,
                 actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
         }
+
+        [TestMethod]
+        public void UrologyAverage()
+        {
+            // Arrange
+            IAbstractFactory abstractFactory = AbstractFactory.Create();
+
+            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
+
+            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateUrology(),
+                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
+
+            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
+
+            // Act
+            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
+                abstractFactory,
+                patientLengthOfStayInputContext);
+
+            // Assert
+            Assert.AreEqual(
+                expected: 3.4m,
+                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: day,
+                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
+        }
     }
 }
