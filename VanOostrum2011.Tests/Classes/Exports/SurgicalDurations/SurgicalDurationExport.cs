@@ -508,5 +508,32 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.ThrowsException<NullReferenceException>(
                 action);
         }
+
+        [TestMethod]
+        public void InvalidSurgicalSpecialtyStdDev()
+        {
+            // Arrange
+            IAbstractFactory abstractFactory = AbstractFactory.Create();
+
+            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
+
+            ISurgicalDurationInputContext surgicalDurationInputContext = abstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationInputContextFactory().Create(
+                specialty: new CodeableConcept(SNOMEDCT, "invalid"),
+                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
+
+            ISurgicalDurationExport surgicalDurationExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalDurationExportFactory().Create();
+
+            // Act
+            Action action = () =>
+            {
+                ISurgicalDurationOutputContext surgicalDurationOutputContext = surgicalDurationExport.GetSurgicalDuration(
+                    abstractFactory,
+                    surgicalDurationInputContext);
+            };
+
+            // Assert
+            Assert.ThrowsException<NullReferenceException>(
+                action);
+        }
     }
 }
