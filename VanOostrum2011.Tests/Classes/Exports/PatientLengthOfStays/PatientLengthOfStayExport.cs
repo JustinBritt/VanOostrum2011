@@ -14,6 +14,8 @@
     [TestClass]
     public sealed class PatientLengthOfStayExport
     {
+        private const string day = "d";
+
         [TestMethod]
         public void EarNoseThroatSurgeryAverage()
         {
