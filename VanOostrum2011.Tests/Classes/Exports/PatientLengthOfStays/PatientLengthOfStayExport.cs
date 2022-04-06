@@ -160,5 +160,34 @@
                 expected: day,
                 actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
         }
+
+        [TestMethod]
+        public void GeneralSurgeryStdDev()
+        {
+            // Arrange
+            IAbstractFactory abstractFactory = AbstractFactory.Create();
+
+            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
+
+            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateGeneralSurgery(),
+                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
+
+            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
+
+            // Act
+            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
+                abstractFactory,
+                patientLengthOfStayInputContext);
+
+            // Assert
+            Assert.AreEqual(
+                expected: 4.7m,
+                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: day,
+                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
+        }
     }
 }
