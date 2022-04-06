@@ -41,7 +41,7 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
 
             Assert.AreEqual(
-                expected: "min",
+                expected: minutes,
                 actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
@@ -68,6 +68,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 29.8m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
@@ -93,6 +97,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 29m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
@@ -118,6 +126,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 10.3m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
@@ -143,6 +155,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 72m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
@@ -168,6 +184,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 56.2m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
@@ -193,6 +213,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 57m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
@@ -218,6 +242,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 43.8m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
@@ -243,6 +271,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 47m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
@@ -268,6 +300,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 37.5m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
@@ -293,6 +329,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 47m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
@@ -318,6 +358,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 44.1m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
@@ -343,6 +387,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 39m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
@@ -368,6 +416,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 25.3m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
@@ -393,6 +445,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 71m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
@@ -418,6 +474,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 68.6m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
