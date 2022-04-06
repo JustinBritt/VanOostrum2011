@@ -4,8 +4,6 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using Hl7.Fhir.Model;
-
     using VanOostrum2011.AbstractFactories;
     using VanOostrum2011.InterfacesAbstractFactories;
     using VanOostrum2011.Interfaces.Contexts.SurgicalDurations;
