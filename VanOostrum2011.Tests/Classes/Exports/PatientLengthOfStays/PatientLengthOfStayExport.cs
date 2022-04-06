@@ -16,6 +16,8 @@
     {
         private const string day = "d";
 
+        private const string skew = "skew";
+
         private const string SNOMEDCT = "http://snomed.info/sct";
 
         [TestMethod]
