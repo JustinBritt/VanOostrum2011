@@ -494,7 +494,7 @@
 
             IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
                 specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateEarNoseThroatSurgery(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().Create("invalid"));
+                statistic: dependenciesAbstractFactory.CreateValueFactory().Create(skew));
 
             IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
 
