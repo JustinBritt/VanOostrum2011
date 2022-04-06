@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -17,5 +16,4 @@
   <ItemGroup>
     <ProjectReference Include="..\VanOostrum2011\VanOostrum2011.csproj" />
   </ItemGroup>
-
 </Project>
