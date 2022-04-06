@@ -14,6 +14,8 @@
     [TestClass]
     public sealed class PatientLengthOfStayExport
     {
+        private const string BoneAndMarrowTransplantationSurgery = "408476004";
+
         private const string day = "d";
 
         private const string skew = "skew";
