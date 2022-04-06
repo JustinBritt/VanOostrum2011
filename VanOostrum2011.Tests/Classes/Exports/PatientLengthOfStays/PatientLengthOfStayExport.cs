@@ -507,5 +507,32 @@
             Assert.IsNull(
                 patientLengthOfStayOutputContext.Duration);
         }
+
+        [TestMethod]
+        public void InvalidSurgicalSpecialtyAverage()
+        {
+            // Arrange
+            IAbstractFactory abstractFactory = AbstractFactory.Create();
+
+            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
+
+            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().Create(BoneAndMarrowTransplantationSurgery, SNOMEDCT, null),
+                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
+
+            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
+
+            // Act
+            Action action = () =>
+            {
+                IPatientLengthOfStayOutputContext surgicalDurationOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
+                    abstractFactory,
+                    patientLengthOfStayInputContext);
+            };
+
+            // Assert
+            Assert.ThrowsException<NullReferenceException>(
+                action);
+        }
     }
 }
