@@ -519,7 +519,7 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
 
             ISurgicalDurationInputContext surgicalDurationInputContext = abstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().Create("invalid", SNOMEDCT, null),
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().Create(BoneAndMarrowTransplantationSurgery, SNOMEDCT, null),
                 statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
 
             ISurgicalDurationExport surgicalDurationExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalDurationExportFactory().Create();
@@ -546,7 +546,7 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
 
             ISurgicalDurationInputContext surgicalDurationInputContext = abstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().Create("invalid", SNOMEDCT, null),
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().Create(BoneAndMarrowTransplantationSurgery, SNOMEDCT, null),
                 statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
 
             ISurgicalDurationExport surgicalDurationExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalDurationExportFactory().Create();
