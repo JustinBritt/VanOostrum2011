@@ -37,6 +37,10 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
             Assert.AreEqual(
                 expected: 27m,
                 actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: "min",
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
