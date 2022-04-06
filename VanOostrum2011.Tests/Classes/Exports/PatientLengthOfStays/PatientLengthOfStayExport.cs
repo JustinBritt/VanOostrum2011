@@ -534,5 +534,32 @@
             Assert.ThrowsException<NullReferenceException>(
                 action);
         }
+
+        [TestMethod]
+        public void InvalidSurgicalSpecialtyStdDev()
+        {
+            // Arrange
+            IAbstractFactory abstractFactory = AbstractFactory.Create();
+
+            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
+
+            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().Create(BoneAndMarrowTransplantationSurgery, SNOMEDCT, null),
+                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
+
+            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
+
+            // Act
+            Action action = () =>
+            {
+                IPatientLengthOfStayOutputContext surgicalDurationOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
+                    abstractFactory,
+                    patientLengthOfStayInputContext);
+            };
+
+            // Assert
+            Assert.ThrowsException<NullReferenceException>(
+                action);
+        }
     }
 }
