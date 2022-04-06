@@ -16,6 +16,8 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
     {
         private const string minutes = "min";
 
+        private const string SNOMEDCT = "http://snomed.info/sct";
+
         [TestMethod]
         public void EarNoseThroatSurgeryAverage()
         {
