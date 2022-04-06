@@ -39,6 +39,10 @@
             Assert.AreEqual(
                 expected: 1.2m,
                 actual: patientLengthOfStayOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: day,
+                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
         }
     }
 }
