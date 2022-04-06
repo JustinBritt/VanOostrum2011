@@ -494,7 +494,7 @@ namespace VanOostrum2011.Tests.Classes.Exports.SurgicalDurations
 
             ISurgicalDurationInputContext surgicalDurationInputContext = abstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationInputContextFactory().Create(
                 specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateEarNoseThroatSurgery(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().Create("invalid"));
+                statistic: dependenciesAbstractFactory.CreateValueFactory().Create(skew));
 
             ISurgicalDurationExport surgicalDurationExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalDurationExportFactory().Create();
 
