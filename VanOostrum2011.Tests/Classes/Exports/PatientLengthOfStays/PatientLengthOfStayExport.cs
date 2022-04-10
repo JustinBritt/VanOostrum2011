@@ -1,6 +1,7 @@
 ﻿namespace VanOostrum2011.Tests.Classes.Exports.PatientLengthOfStays
 {
     using System;
+    using System.Collections.Generic;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -16,13 +17,10 @@
         private const string EarNoseThroatSurgery = "394604002";
         private const string GeneralSurgery = "394609007";
         private const string GynecologicalSurgery = "394586005";
-        private const string Neurosurgery = "394610002";
-        private const string OphthalmicSurgery = "422191005";
         private const string Ophthalmology = "394594003";
         private const string OrthopedicSurgery = "24241000087106";
         private const string Overall = "394732004";
         private const string PlasticSurgery = "394611003";
-        private const string Trauma = "394801008";
         private const string Urology = "394612005";
 
         private const string BoneAndMarrowTransplantationSurgery = "408476004";
@@ -33,8 +31,52 @@
 
         private const string SNOMEDCT = "http://snomed.info/sct";
 
+        private const string average = "average";
+        private const string stddev = "std-dev";
+
+        private static IEnumerable<object[]> Table1Data =>
+            new[]
+            {
+                new object[] { EarNoseThroatSurgery, 1.2m, day, average },
+
+                new object[] { EarNoseThroatSurgery, 0.8m, day, stddev },
+
+                new object[] { Ophthalmology, 1.0m, day, average },
+
+                new object[] { Ophthalmology, 0.6m, day, stddev },
+
+                new object[] { GeneralSurgery, 2.7m, day, average },
+
+                new object[] { GeneralSurgery, 4.7m, day, stddev },
+
+                new object[] { GynecologicalSurgery, 2.3m, day, average },
+
+                new object[] { GynecologicalSurgery, 2.4m, day, stddev },
+
+                new object[] { OrthopedicSurgery, 2.2m, day, average },
+
+                new object[] { OrthopedicSurgery, 3.0m, day, stddev },
+
+                new object[] { Overall, 2.0m, day, average },
+
+                new object[] { Overall, 2.9m, day, stddev },
+
+                new object[] { PlasticSurgery, 1.6m, day, average },
+
+                new object[] { PlasticSurgery, 3.2m, day, stddev },
+
+                new object[] { Urology, 3.4m, day, average },
+
+                new object[] { Urology, 2.7m, day, stddev },
+            };
+
         [TestMethod]
-        public void EarNoseThroatSurgeryAverage()
+        [DynamicData(nameof(Table1Data))]
+        public void Table1(
+            string specialty,
+            decimal value,
+            string unit,
+            string statistic)
         {
             // Arrange
             IAbstractFactory abstractFactory = AbstractFactory.Create();
@@ -42,8 +84,8 @@
             IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
 
             IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateEarNoseThroatSurgery(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().Create(specialty, SNOMEDCT, null),
+                statistic: dependenciesAbstractFactory.CreateValueFactory().Create(statistic));
 
             IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
 
@@ -54,446 +96,11 @@
 
             // Assert
             Assert.AreEqual(
-                expected: 1.2m,
+                expected: value,
                 actual: patientLengthOfStayOutputContext.Duration.Value.Value);
 
             Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void EarNoseThroatSurgeryStdDev()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateEarNoseThroatSurgery(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 0.8m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void EyeSurgeryAverage()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateEyeSurgery(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 1.0m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void EyeSurgeryStdDev()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateEyeSurgery(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 0.6m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void GeneralSurgeryAverage()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateGeneralSurgery(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 2.7m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void GeneralSurgeryStdDev()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateGeneralSurgery(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 4.7m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void GynecologyAverage()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateGynecology(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 2.3m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void GynecologyStdDev()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateGynecology(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 2.4m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void OrthopedicSurgeryAverage()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOrthopedicSurgery(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 2.2m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void OrthopedicSurgeryStdDev()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOrthopedicSurgery(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 3.0m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void OverallAverage()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOverall(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 2.0m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void OverallStdDev()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOverall(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 2.9m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void PlasticSurgeryAverage()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreatePlasticSurgery(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 1.6m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void PlasticSurgeryStdDev()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreatePlasticSurgery(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 3.2m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void UrologyAverage()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateUrology(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 3.4m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
-                actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        public void UrologyStdDev()
-        {
-            // Arrange
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
-            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
-
-            IPatientLengthOfStayInputContext patientLengthOfStayInputContext = abstractFactory.CreateContextsAbstractFactory().CreatePatientLengthOfStayInputContextFactory().Create(
-                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateUrology(),
-                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateStdDev());
-
-            IPatientLengthOfStayExport patientLengthOfStayExport = abstractFactory.CreateExportsAbstractFactory().CreatePatientLengthOfStayExportFactory().Create();
-
-            // Act
-            IPatientLengthOfStayOutputContext patientLengthOfStayOutputContext = patientLengthOfStayExport.GetPatientLengthOfStay(
-                abstractFactory,
-                patientLengthOfStayInputContext);
-
-            // Assert
-            Assert.AreEqual(
-                expected: 2.7m,
-                actual: patientLengthOfStayOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: day,
+                expected: unit,
                 actual: patientLengthOfStayOutputContext.Duration.UnitElement.Value);
         }
 
